@@ -1,0 +1,37 @@
+{
+    "name": "phlexible/task-bundle",
+    "description": "phlexible task bundle",
+    "license": "proprietary",
+	"type": "symfony-bundle",
+	"keywords": ["tasks", "todo"],
+    "autoload": {
+        "psr-4": {
+            "Phlexible\\Bundle\\TaskBundle\\": ""
+        }
+    },
+    "require": {
+        "php": ">=5.3.0",
+        "phlexible/gui-bundle": "dev-extjs5"
+    },
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://packages.brainbits.net/phlexible-bundles/",
+            "options": {
+                "ssl": {
+                    "allow_self_signed": "true"
+                }
+            }
+        }
+    ],
+    "config": {
+        "bin-dir": "bin"
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0-dev"
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
