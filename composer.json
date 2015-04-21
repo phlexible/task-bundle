@@ -2,8 +2,8 @@
     "name": "phlexible/task-bundle",
     "description": "phlexible task bundle",
     "license": "proprietary",
-	"type": "symfony-bundle",
-	"keywords": ["tasks", "todo"],
+    "type": "symfony-bundle",
+    "keywords": ["tasks", "todo"],
     "autoload": {
         "psr-4": {
             "Phlexible\\Bundle\\TaskBundle\\": ""
