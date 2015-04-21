@@ -3,21 +3,26 @@
     "name": "phlexible/task-bundle",
     "path-mappings": {
         "/phlexible/phlexibletask/icons": "Resources/public/icons",
+        "/phlexible/phlexibletask/menu": "Resources/menu",
         "/phlexible/phlexibletask/scripts": "Resources/scripts",
         "/phlexible/phlexibletask/styles": "Resources/styles"
     },
     "bindings": {
-        "a80e5ff2-01fd-5f75-aca8-7fdfb93099a4": {
+        "0204d4db-1e07-5d44-9faa-d763972b1cc0": {
+            "query": "/phlexible/phlexibletask/icons/*.png",
+            "type": "phlexible/icons"
+        },
+        "3c16a1d5-c0e4-58e1-a418-282bd820f0de": {
+            "query": "/phlexible/phlexibletask/menu/*.yml",
+            "type": "phlexible/menu"
+        },
+        "0537382f-e1af-5e26-bc88-6eda5741fdf3": {
             "query": "/phlexible/phlexibletask/scripts/**/*.js",
             "type": "phlexible/scripts"
         },
-        "accc6173-ba11-5df3-b86b-257c6b40ce9e": {
+        "4f1ab77a-fb01-5410-95cf-477147e83d53": {
             "query": "/phlexible/phlexibletask/styles/**/*.css",
             "type": "phlexible/styles"
         },
-        "ace2d4bc-e5af-55c6-88e1-7284fc2a1c31": {
-            "query": "/phlexible/phlexibletask/icons/*.png",
-            "type": "phlexible/icons"
-        }
     }
 }
