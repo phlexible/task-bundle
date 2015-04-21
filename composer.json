@@ -11,7 +11,8 @@
     },
     "require": {
         "php": ">=5.3.0",
-        "phlexible/gui-bundle": "dev-extjs5"
+        "phlexible/gui-bundle": "dev-extjs5",
+        "yohang/finite": "~1.0"
     },
     "repositories": [
         {
