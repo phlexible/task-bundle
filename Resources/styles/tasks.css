@@ -1,5 +1,5 @@
 .p-tasks-main-panel .x-layout-collapsed-west {
-    background-image: url(/COMPONENTSPATH/phlexibletask/images/panel_tasks.png);
+    background-image: url(/BUNDLES_PATH/phlexibletask/images/panel_tasks.png);
     background-repeat: no-repeat;
     background-position: center;
 }
@@ -49,7 +49,7 @@
 }
 
 .p-tasks-toolbar {
-    background-image: url(/COMPONENTSPATH/tasks/images/toolbar-bg.gif) !IMPORTANT;
+    background-image: url(/BUNDLES_PATH/tasks/images/toolbar-bg.gif) !IMPORTANT;
 }
 
 .p-tasks-comments, .p-tasks-transitions {
