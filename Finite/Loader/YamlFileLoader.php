@@ -66,7 +66,7 @@ class YamlFileLoader implements LoaderInterface
     /**
      * {@inheritDoc}
      */
-    public function supports(StatefulInterface $object)
+    public function supports($object, $graph = 'default')
     {
         $reflection = new \ReflectionClass($this->config['class']);
 
