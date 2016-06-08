@@ -146,10 +146,10 @@ Phlexible.tasks.MainPanel = Ext.extend(Ext.Panel, {
                         height: 230,
                         html: '&nbsp;',
                         tbar: [{
-                            text: '_status',
+                            text: this.strings.status,
                             menu: []
                         },{
-                            text: '_comment',
+                            text: this.strings.comment,
                             iconCls: 'p-task-comment-icon',
                             handler: function() {
                                 var w = new Phlexible.tasks.CommentWindow();
@@ -157,14 +157,14 @@ Phlexible.tasks.MainPanel = Ext.extend(Ext.Panel, {
                             },
                             scope: this
                         },{
-                            text: '_assign_to_me',
+                            text: this.strings.assign_to_me,
                             handler: function() {
                                 var w = new Phlexible.tasks.AssignWindow();
                                 w.show();
                             },
                             scope: this
                         },{
-                            text: '_assign',
+                            text: this.strings.assign,
                             handler: function() {
                                 var w = new Phlexible.tasks.AssignWindow();
                                 w.show();

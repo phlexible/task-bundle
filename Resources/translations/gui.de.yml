@@ -52,3 +52,5 @@ tasks:
     for_creator: 'Sie haben diese Aufgabe {2} am {0} um {1} zugewiesen.'
     for_recipient: 'Diese Aufgabe wurde Ihnen am {0} um {1} durch {2} zugewiesen.'
     for_others: '{0} hat am {1} um {2} {3} diese Aufgabe zugewiesen.'
+    assign_to_me: 'Assign to me'
+    assign: Assign
