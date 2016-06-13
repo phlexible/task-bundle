@@ -6,26 +6,30 @@ services:
     phlexible_task.mailer:
         class: Phlexible\Bundle\TaskBundle\Mailer\Mailer
         arguments:
-            - @twig
-            - @mailer
+            - "@twig"
+            - "@mailer"
             -
                 new_task:
-                    template: %phlexible_task.mailer.new_task.template%
-                    from_email: %phlexible_task.mailer.from_email%
+                    template: "%phlexible_task.mailer.new_task.template%"
+                    from_email: "%phlexible_task.mailer.from_email%"
                 update:
-                    template: %phlexible_task.mailer.update.template%
-                    from_email: %phlexible_task.mailer.from_email%
+                    template: "%phlexible_task.mailer.update.template%"
+                    from_email: "%phlexible_task.mailer.from_email%"
 
     # event listeners
     phlexible_task.listener.apply_successor:
         class: Phlexible\Bundle\TaskBundle\EventListener\ApplySuccessorListener
-        arguments: [@doctrine.orm.entity_manager]
+        arguments:
+            - "@doctrine.orm.entity_manager"
         tags:
             - {name: kernel.event_listener, event: phlexible_user.apply_successor, method: onApplySuccessor}
 
     phlexible_task.listener.load_data:
         class: Phlexible\Bundle\TaskBundle\EventListener\LoadDataListener
-        arguments: [@phlexible_task.task_manager, @phlexible_user.user_manager, @security.token_storage]
+        arguments:
+            - "@phlexible_task.task_manager"
+            - "@phlexible_user.user_manager"
+            - "@security.token_storage"
         tags:
             - {name: kernel.event_listener, event: phlexible_element.load_data, method: onLoadData}
 
@@ -34,12 +38,12 @@ services:
         class: Phlexible\Bundle\TaskBundle\Portlet\MyTasksPortlet
         public: false
         arguments:
-            - @translator
-            - @phlexible_task.task_manager
-            - @phlexible_task.types
-            - @security.token_storage
-            - @phlexible_user.user_manager
-            - %phlexible_task.portlet.num_items%]
+            - "@translator"
+            - "@phlexible_task.task_manager"
+            - "@phlexible_task.types"
+            - "@security.token_storage"
+            - "@phlexible_user.user_manager"
+            - "%phlexible_task.portlet.num_items%"
         tags:
             - {name: phlexible_dashboard.portlet}
 
