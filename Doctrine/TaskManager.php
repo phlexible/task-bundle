@@ -414,8 +414,6 @@ class TaskManager implements TaskManagerInterface
         $message = TasksMessage::create("Task updated", $body);
         $this->messageService->post($message);
 
-        $type = $this->types->get($task->getType());
-
         $involvedUsers = [];
         foreach ($task->getInvolvedUserIds() as $involvedUserId) {
             $involvedUser = $this->userManager->find($involvedUserId);
@@ -424,6 +422,8 @@ class TaskManager implements TaskManagerInterface
             }
         }
 
-        $this->mailer->sendUpdateEmailMessage($task, $byUser, $involvedUsers, $changes, $type);
+        $type = $this->types->get($task->getType());
+
+        //$this->mailer->sendUpdateEmailMessage($task, $byUser, $involvedUsers, $changes, $type);
     }
 }

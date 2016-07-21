@@ -50,7 +50,7 @@ Phlexible.tasks.NewTaskWindow = Ext.extend(Ext.Window, {
                                 if (r) {
                                     var c = this.getComponent(0).getComponent(1);
                                     c.lastQuery = null;
-                                    c.store.baseParams.task_class = r.data.id;
+                                    c.store.baseParams.type = r.data.id;
                                     c.setValue('');
                                     c.enable();
                                 }
@@ -69,7 +69,7 @@ Phlexible.tasks.NewTaskWindow = Ext.extend(Ext.Window, {
                         store: new Ext.data.JsonStore({
                             url: Phlexible.Router.generate('tasks_recipients'),
                             baseParams: {
-                                task_class: false
+                                type: false
                             },
                             fields: ['uid', 'username'],
                             id: 'uid',

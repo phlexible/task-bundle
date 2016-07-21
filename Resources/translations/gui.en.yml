@@ -22,7 +22,7 @@ tasks:
     new_state: New state
     old_state: Old state
     id: ID
-    create_date: 'Created'
+    created_at: 'Created'
     create_user: 'Author'
     change_date: 'Changed on'
     change_user: 'Changed by'

@@ -30,7 +30,7 @@ interface TypeInterface
     /**
      * @return string
      */
-    public function getResource();
+    public function getRole();
 
     /**
      * @param Task $task

@@ -9,7 +9,6 @@
 namespace Phlexible\Bundle\TaskBundle\Task\Type;
 
 use Phlexible\Bundle\TaskBundle\Entity\Task;
-use Symfony\Component\Translation\TranslatorInterface;
 
 /**
  * Generic formatter
@@ -37,7 +36,7 @@ class GenericType implements TypeInterface
     /**
      * {@inheritdoc}
      */
-    public function getResource()
+    public function getRole()
     {
         return null;
     }

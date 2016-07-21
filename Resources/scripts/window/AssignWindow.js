@@ -34,7 +34,7 @@ Phlexible.tasks.AssignWindow = Ext.extend(Ext.Window, {
                         store: new Ext.data.JsonStore({
                             url: Phlexible.Router.generate('tasks_recipients'),
                             baseParams: {
-                                task_class: false
+                                type: this.task.get('type')
                             },
                             fields: ['uid', 'username'],
                             id: 'uid',
@@ -99,11 +99,19 @@ Phlexible.tasks.AssignWindow = Ext.extend(Ext.Window, {
             return;
         }
 
-        var values = this.getComponent(0).getForm().getValues();
-        Phlexible.tasks.util.TaskManager.assign(this.taskId, values.recipient, values.comment, function(success, result) {
+        var values = this.getComponent(0).getForm().getValues(),
+            self = this;
+
+        Phlexible.tasks.util.TaskManager.assign(this.task.id, values.recipient, values.comment, function(success, result) {
             if (success && result.success) {
-                this.fireEvent('success');
-                this.close();
+                self.task.data.status = result.data.task.status;
+                self.task.data.states = result.data.task.states;
+                self.task.data.comments = result.data.task.comments;
+                self.task.data.transitions = result.data.task.transitions;
+                self.task.data.assigned_user = result.data.task.assigned_user;
+
+                self.fireEvent('assign', self.task);
+                self.close();
             }
         });
     }

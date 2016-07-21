@@ -6,5 +6,5 @@ Phlexible.tasks.model.Transition = Ext.data.Record.create([
     {name: 'old_state'},
     {name: 'new_state'},
     {name: 'create_user'},
-    {name: 'create_date'}
+    {name: 'created_at'}
 ]);

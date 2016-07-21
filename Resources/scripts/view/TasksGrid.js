@@ -82,8 +82,8 @@ Phlexible.tasks.TasksGrid = Ext.extend(Ext.grid.GridPanel, {
                 dataIndex: 'create_user',
                 width: 100
             }, {
-                header: this.strings.create_date,
-                dataIndex: 'create_date',
+                header: this.strings.created_at,
+                dataIndex: 'created_at',
                 width: 120,
                 hidden: true
             }];

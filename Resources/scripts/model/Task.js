@@ -13,7 +13,7 @@ Phlexible.tasks.model.Task = Ext.data.Record.create([
     {name: 'assigned_user'},
     {name: 'status'},
     {name: 'create_user'},
-    {name: 'create_date'},
+    {name: 'created_at'},
     {name: 'transitions'},
     {name: 'comments'},
     {name: 'states'}

@@ -76,11 +76,19 @@ Phlexible.tasks.CommentWindow = Ext.extend(Ext.Window, {
             return;
         }
 
-        var values = this.getComponent(0).getForm().getValues();
-        Phlexible.tasks.util.TaskManager.comment(this.taskId, values.comment, function(success, result) {
+        var values = this.getComponent(0).getForm().getValues(),
+            self = this;
+
+        Phlexible.tasks.util.TaskManager.comment(this.task.id, values.comment, function(success, result) {
             if (success && result.success) {
-                this.fireEvent('success');
-                this.close();
+                self.task.data.status = result.data.task.status;
+                self.task.data.states = result.data.task.states;
+                self.task.data.comments = result.data.task.comments;
+                self.task.data.transitions = result.data.task.transitions;
+                self.task.data.assigned_user = result.data.task.assigned_user;
+
+                self.fireEvent('comment', self.task);
+                self.close();
             }
         });
     }
