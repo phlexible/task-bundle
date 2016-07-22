@@ -9,6 +9,9 @@
 namespace Phlexible\Bundle\TaskBundle\EventListener;
 
 use Doctrine\ORM\EntityManager;
+use Phlexible\Bundle\TaskBundle\Entity\Comment;
+use Phlexible\Bundle\TaskBundle\Entity\Task;
+use Phlexible\Bundle\TaskBundle\Entity\Transition;
 use Phlexible\Bundle\UserBundle\Event\ApplySuccessorEvent;
 
 /**
@@ -42,14 +45,24 @@ class ApplySuccessorListener
         $fromUserId = $fromUser->getId();
         $toUserId = $toUser->getId();
 
-        $taskRepository = $this->entityManager->getRepository('PhlexibleTaskBundle:Task');
+        $taskRepository = $this->entityManager->getRepository(Task::class);
+        $taskCommentRepository = $this->entityManager->getRepository(Comment::class);
+        $taskTransitionRepository = $this->entityManager->getRepository(Transition::class);
 
         foreach ($taskRepository->findByCreateUserId($fromUserId) as $task) {
             $task->setCreateUserId($toUserId);
         }
 
-        foreach ($taskRepository->findByRecipientUserId($fromUserId) as $task) {
-            $task->setRecipientUserId($toUserId);
+        foreach ($taskCommentRepository->findByCreateUserId($fromUserId) as $comment) {
+            $comment->setCreateUserId($toUserId);
+        }
+
+        foreach ($taskTransitionRepository->findByCreateUserId($fromUserId) as $transition) {
+            $transition->setCreateUserId($toUserId);
+        }
+
+        foreach ($taskRepository->findByAssignedUserId($fromUserId) as $task) {
+            $task->setAssignedUserId($toUserId);
         }
 
         $this->entityManager->flush();
