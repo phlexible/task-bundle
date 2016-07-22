@@ -19,8 +19,6 @@ use Symfony\Component\HttpKernel\Bundle\Bundle;
  */
 class PhlexibleTaskBundle extends Bundle
 {
-    const RESOURCE_TASKS = 'tasks';
-
     /**
      * {@inheritdoc}
      */

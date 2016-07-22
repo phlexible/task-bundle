@@ -8,7 +8,10 @@
 
 namespace Phlexible\Bundle\TaskBundle\Tests;
 
+use Phlexible\Bundle\TaskBundle\DependencyInjection\Compiler\AddTaskTypesPass;
 use Phlexible\Bundle\TaskBundle\PhlexibleTaskBundle;
+use Prophecy\Argument;
+use Symfony\Component\DependencyInjection\ContainerBuilder;
 
 /**
  * Task bundle test
@@ -17,10 +20,14 @@ use Phlexible\Bundle\TaskBundle\PhlexibleTaskBundle;
  */
 class PhlexibleTaskBundleTest extends \PHPUnit_Framework_TestCase
 {
-    public function testBundle()
+    public function testBundleAddsCompilerPass()
     {
-        $bundle = new PhlexibleTaskBundle();
+        $container = $this->prophesize(ContainerBuilder::class);
 
-        $this->assertSame('PhlexibleTaskBundle', $bundle->getName());
+        $container->addCompilerPass(Argument::type(AddTaskTypesPass::class))->shouldBeCalled();
+
+        $bundle = new PhlexibleTaskBundle();
+        $bundle->build($container->reveal());
+
     }
 }
