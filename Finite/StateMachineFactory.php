@@ -17,7 +17,7 @@ use Symfony\Component\Config\FileLocatorInterface;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
 /**
- * Loads a StateMachine from a yaml file
+ * Loads a StateMachine from a yaml file.
  *
  * @author Stephan Wentz <sw@brainbits.net>
  */

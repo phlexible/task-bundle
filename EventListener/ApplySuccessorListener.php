@@ -18,7 +18,7 @@ use Phlexible\Bundle\TaskBundle\Entity\Transition;
 use Phlexible\Bundle\UserBundle\Event\ApplySuccessorEvent;
 
 /**
- * Apply successor listener
+ * Apply successor listener.
  *
  * @author Stephan Wentz <sw@brainbits.net>
  */

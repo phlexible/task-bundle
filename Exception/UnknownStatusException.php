@@ -12,7 +12,7 @@
 namespace Phlexible\Bundle\TaskBundle\Exception;
 
 /**
- * Unknown status exception
+ * Unknown status exception.
  *
  * @author Stephan Wentz <sw@brainbits.net>
  */

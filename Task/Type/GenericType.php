@@ -14,7 +14,7 @@ namespace Phlexible\Bundle\TaskBundle\Task\Type;
 use Phlexible\Bundle\TaskBundle\Entity\Task;
 
 /**
- * Generic formatter
+ * Generic formatter.
  *
  * @author Stephan Wentz <sw@brainbits.net>
  */
@@ -49,7 +49,7 @@ class GenericType implements TypeInterface
      */
     public function getTitle(Task $task)
     {
-        $title = 'Allgemeine Aufgabe';//$this->translator->trans('tasks.general_title');
+        $title = 'Allgemeine Aufgabe'; //$this->translator->trans('tasks.general_title');
 
         return $title;
     }
@@ -73,7 +73,7 @@ class GenericType implements TypeInterface
      */
     public function getLink(Task $task)
     {
-        $mailLink = '?e=tasks&p[id]=' . $task->getId();
+        $mailLink = '?e=tasks&p[id]='.$task->getId();
 
         return $mailLink;
     }
@@ -84,7 +84,7 @@ class GenericType implements TypeInterface
     public function getMenuHandle(Task $task)
     {
         $menuHandle = [
-            'xtype' => 'tasks'
+            'xtype' => 'tasks',
         ];
 
         return $menuHandle;

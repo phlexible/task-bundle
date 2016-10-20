@@ -11,7 +11,6 @@
 
 namespace Phlexible\Bundle\TaskBundle\Mailer;
 
-use Phlexible\Bundle\TaskBundle\Entity\Status;
 use Phlexible\Bundle\TaskBundle\Entity\Task;
 use Phlexible\Bundle\TaskBundle\Task\Type\TypeInterface;
 use Swift_Mailer;
@@ -20,7 +19,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
 use Twig_Environment;
 
 /**
- * User mailer
+ * User mailer.
  *
  * @author Stephan Wentz <sw@brainbits.net>
  */
@@ -54,7 +53,7 @@ class Mailer
     }
 
     /**
-     * Send a new task email
+     * Send a new task email.
      *
      * @param Task          $task
      * @param UserInterface $createUser
@@ -79,16 +78,16 @@ class Mailer
             [
                 'createUser' => $createUser,
                 'assignUser' => $assignUser,
-                'task'       => $task,
-                'text'       => $text,
-                'url'        => $url
+                'task' => $task,
+                'text' => $text,
+                'url' => $url,
             ]
         );
         $this->sendEmailMessage($content, $from, $assignUser->getEmail());
     }
 
     /**
-     * Send an update email
+     * Send an update email.
      *
      * @param Task            $task
      * @param UserInterface   $byUser
@@ -107,11 +106,11 @@ class Mailer
         $content = $this->templating->render(
             $template,
             [
-                'byUser'        => $byUser,
+                'byUser' => $byUser,
                 'involvedUsers' => $involvedUsers,
-                'changes'       => $changes,
-                'text'          => $text,
-                'url'           => $url
+                'changes' => $changes,
+                'text' => $text,
+                'url' => $url,
             ]
         );
 

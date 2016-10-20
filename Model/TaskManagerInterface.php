@@ -13,13 +13,12 @@ namespace Phlexible\Bundle\TaskBundle\Model;
 
 use Finite\Transition\TransitionInterface;
 use Phlexible\Bundle\TaskBundle\Entity\Comment;
-use Phlexible\Bundle\TaskBundle\Entity\Status;
 use Phlexible\Bundle\TaskBundle\Entity\Task;
 use Phlexible\Bundle\TaskBundle\Task\Type\TypeInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
- * Task manager interface
+ * Task manager interface.
  *
  * @author Stephan Wentz <sw@brainbits.net>
  */
@@ -131,7 +130,7 @@ interface TaskManagerInterface
     public function getTransitions(Task $task);
 
     /**
-     * Create task
+     * Create task.
      *
      * @param TypeInterface $type
      * @param UserInterface $createUser

@@ -11,7 +11,6 @@
 
 namespace Phlexible\Bundle\TaskBundle\Controller;
 
-use Doctrine\ORM\EntityRepository;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use Phlexible\Bundle\GuiBundle\Response\ResultResponse;
 use Phlexible\Bundle\TaskBundle\Entity\Task;
@@ -24,7 +23,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
- * Task controller
+ * Task controller.
  *
  * @author Stephan Wentz <sw@brainbits.net>
  * @Route("/tasks")
@@ -33,7 +32,7 @@ use Symfony\Component\HttpFoundation\Request;
 class TaskController extends Controller
 {
     /**
-     * List tasks
+     * List tasks.
      *
      * @param Request $request
      *
@@ -147,11 +146,11 @@ class TaskController extends Controller
             $transitionUser = $userManager->find($transition->getCreateUserId());
             $createdAt = $transition->getCreatedAt()->format('Y-m-d H:i:s');
             $transitions[$createdAt.'_'.$transition->getId()] = [
-                'id'          => $transition->getId(),
-                'name'        => $transition->getName(),
-                'new_state'   => $transition->getNewState(),
-                'old_state'   => $transition->getOldState(),
-                'created_at'  => $createdAt,
+                'id' => $transition->getId(),
+                'name' => $transition->getName(),
+                'new_state' => $transition->getNewState(),
+                'old_state' => $transition->getOldState(),
+                'created_at' => $createdAt,
                 'create_user' => $transitionUser->getDisplayName(),
             ];
         }
@@ -163,40 +162,40 @@ class TaskController extends Controller
             $commentUser = $userManager->find($comment->getCreateUserId());
             $createdAt = $comment->getCreatedAt()->format('Y-m-d H:i:s');
             $comments[$createdAt.'_'.$comment->getId()] = [
-                'id'            => $comment->getId(),
+                'id' => $comment->getId(),
                 'current_state' => $comment->getCurrentState(),
-                'comment'       => $comment->getComment(),
-                'created_at'    => $createdAt,
-                'create_user'   => $commentUser->getDisplayName(),
+                'comment' => $comment->getComment(),
+                'created_at' => $createdAt,
+                'create_user' => $commentUser->getDisplayName(),
             ];
         }
         ksort($comments);
         $comments = array_values($comments);
 
         $taskData = [
-            'id'             => $task->getId(),
-            'type'           => $task->getType(),
-            'generic'        => $task->getType() === 'generic',
-            'title'          => $type->getTitle($task),
-            'text'           => $type->getText($task),
-            'description'    => $task->getDescription(),
-            'component'      => $type->getComponent(),
-            'link'           => $type->getLink($task),
-            'assigned_user'  => $assignedUser->getDisplayName(),
-            'status'         => $task->getFiniteState(),
-            'create_user'    => $createUser->getDisplayName(),
-            'create_uid'     => $task->getCreateUserId(),
-            'created_at'     => $task->getCreatedAt()->format('Y-m-d H:i:s'),
-            'transitions'    => $transitions,
-            'comments'       => $comments,
-            'states'         => $taskManager->getTransitions($task),
+            'id' => $task->getId(),
+            'type' => $task->getType(),
+            'generic' => $task->getType() === 'generic',
+            'title' => $type->getTitle($task),
+            'text' => $type->getText($task),
+            'description' => $task->getDescription(),
+            'component' => $type->getComponent(),
+            'link' => $type->getLink($task),
+            'assigned_user' => $assignedUser->getDisplayName(),
+            'status' => $task->getFiniteState(),
+            'create_user' => $createUser->getDisplayName(),
+            'create_uid' => $task->getCreateUserId(),
+            'created_at' => $task->getCreatedAt()->format('Y-m-d H:i:s'),
+            'transitions' => $transitions,
+            'comments' => $comments,
+            'states' => $taskManager->getTransitions($task),
         ];
 
         return $taskData;
     }
 
     /**
-     * List types
+     * List types.
      *
      * @param Request $request
      *
@@ -224,7 +223,7 @@ class TaskController extends Controller
             }
 
             $types[] = [
-                'id'   => $type->getName(),
+                'id' => $type->getName(),
                 'name' => $type->getName(),
             ];
         }
@@ -233,7 +232,7 @@ class TaskController extends Controller
     }
 
     /**
-     * List recipients
+     * List recipients.
      *
      * @param Request $request
      *
@@ -268,7 +267,7 @@ class TaskController extends Controller
             }
 
             $users[$user->getDisplayName()] = [
-                'uid'      => $user->getId(),
+                'uid' => $user->getId(),
                 'username' => $user->getDisplayName(),
             ];
         }
@@ -280,7 +279,7 @@ class TaskController extends Controller
     }
 
     /**
-     * Create task
+     * Create task.
      *
      * @param Request $request
      *
@@ -321,7 +320,7 @@ class TaskController extends Controller
     }
 
     /**
-     * Create task comment
+     * Create task comment.
      *
      * @param Request $request
      *
@@ -354,7 +353,7 @@ class TaskController extends Controller
     }
 
     /**
-     * Create task transition
+     * Create task transition.
      *
      * @param Request $request
      *
@@ -397,7 +396,7 @@ class TaskController extends Controller
     }
 
     /**
-     * Assign task
+     * Assign task.
      *
      * @param Request $request
      *
@@ -435,7 +434,7 @@ class TaskController extends Controller
     }
 
     /**
-     * View task
+     * View task.
      *
      * @param Request $request
      *
@@ -467,9 +466,9 @@ class TaskController extends Controller
             $transitionUser = $userManager->find($transition->getCreateUserId());
             $history[] = [
                 'create_date' => $transition->getCreatedAt()->format('Y-m-d H:i:s'),
-                'name'        => $transitionUser->getDisplayName(),
-                'status'      => $transition->getNewState(),
-                'latest'      => 1,
+                'name' => $transitionUser->getDisplayName(),
+                'status' => $transition->getNewState(),
+                'latest' => 1,
             ];
         }
         $transitions = array_reverse($transitions);
@@ -479,37 +478,37 @@ class TaskController extends Controller
             $commentUser = $userManager->find($comment->getCreateUserId());
             $history[] = [
                 'create_date' => $comment->getCreatedAt()->format('Y-m-d H:i:s'),
-                'name'        => $commentUser->getDisplayName(),
-                'status'      => $comment->getCurrentState(),
-                'comment'     => $comment->getComment(),
-                'latest'      => 1,
+                'name' => $commentUser->getDisplayName(),
+                'status' => $comment->getCurrentState(),
+                'comment' => $comment->getComment(),
+                'latest' => 1,
             ];
         }
 
         $type = $types->get($task->getType());
 
         $data = [
-            'id'             => $task->getId(),
-            'type'           => $task->getType(),
-            'title'          => $type->getTitle($task),
-            'text'           => $type->getText($task),
-            'component'      => $type->getComponent(),
-            'created'        => $task->getCreateUserId() === $this->getUser()->getId() ? 1 : 0,
-            'assigned'       => $task->getAssignedUserId() === $this->getUser()->getId() ? 1 : 0,
-            'assigned_user'  => $assignedUser->getDisplayName(),
-            'assigned_uid'   => $task->getAssignedUserId(),
-            'create_user'    => $createUser->getDisplayName(),
-            'create_uid'     => $task->getCreateUserId(),
-            'create_date'    => $task->getCreatedAt()->format('Y-m-d H:i:s'),
-            'latest_status'  => $task->getFiniteState(),
-            'latest_comment' => '',//$latestStatus->getComment(),
-            'latest_user'    => '',//$assignedUser->getDisplayName(),
-            'latest_uid'     => '',//$latestStatus->getCreateUserId(),
-            'latest_date'    => '',//$latestStatus->getCreatedAt()->format('Y-m-d H:i:s'),
+            'id' => $task->getId(),
+            'type' => $task->getType(),
+            'title' => $type->getTitle($task),
+            'text' => $type->getText($task),
+            'component' => $type->getComponent(),
+            'created' => $task->getCreateUserId() === $this->getUser()->getId() ? 1 : 0,
+            'assigned' => $task->getAssignedUserId() === $this->getUser()->getId() ? 1 : 0,
+            'assigned_user' => $assignedUser->getDisplayName(),
+            'assigned_uid' => $task->getAssignedUserId(),
+            'create_user' => $createUser->getDisplayName(),
+            'create_uid' => $task->getCreateUserId(),
+            'create_date' => $task->getCreatedAt()->format('Y-m-d H:i:s'),
+            'latest_status' => $task->getFiniteState(),
+            'latest_comment' => '', //$latestStatus->getComment(),
+            'latest_user' => '', //$assignedUser->getDisplayName(),
+            'latest_uid' => '', //$latestStatus->getCreateUserId(),
+            'latest_date' => '', //$latestStatus->getCreatedAt()->format('Y-m-d H:i:s'),
             //'recipient_uid'  => $task->getRecipientUserId(),
             //'latest_id'      => $latestStatus->getId(),
-            'transitions'    => $transitions,
-            'comments'       => $comments,
+            'transitions' => $transitions,
+            'comments' => $comments,
         ];
 
         return new JsonResponse($data);
