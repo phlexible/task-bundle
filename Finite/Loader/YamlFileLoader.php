@@ -1,12 +1,20 @@
 <?php
 
+/*
+ * This file is part of the phlexible task package.
+ *
+ * (c) Stephan Wentz <sw@brainbits.net>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace Phlexible\Bundle\TaskBundle\Finite\Loader;
 
 use Finite\Event\CallbackHandler;
 use Finite\Loader\LoaderInterface;
 use Finite\State\State;
 use Finite\State\StateInterface;
-use Finite\StatefulInterface;
 use Finite\StateMachine\StateMachineInterface;
 use Finite\Transition\Transition;
 use Symfony\Component\OptionsResolver\Options;
