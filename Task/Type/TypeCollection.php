@@ -14,7 +14,7 @@ namespace Phlexible\Bundle\TaskBundle\Task\Type;
 use Phlexible\Bundle\TaskBundle\Exception\InvalidArgumentException;
 
 /**
- * Type collection
+ * Type collection.
  *
  * @author Stephan Wentz <sw@brainbits.net>
  */
@@ -71,6 +71,7 @@ class TypeCollection
      * @param string $typeId
      *
      * @throws InvalidArgumentException
+     *
      * @return TypeInterface|null
      */
     public function get($typeId)

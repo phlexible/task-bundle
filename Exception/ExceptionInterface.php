@@ -12,11 +12,10 @@
 namespace Phlexible\Bundle\TaskBundle\Exception;
 
 /**
- * Exception interface for task bundle
+ * Exception interface for task bundle.
  *
  * @author Stephan Wentz <sw@brainbits.net>
  */
 interface ExceptionInterface
 {
-
 }

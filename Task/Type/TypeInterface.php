@@ -14,7 +14,7 @@ namespace Phlexible\Bundle\TaskBundle\Task\Type;
 use Phlexible\Bundle\TaskBundle\Entity\Task;
 
 /**
- * Type interface
+ * Type interface.
  *
  * @author Stephan Wentz <sw@brainbits.net>
  */

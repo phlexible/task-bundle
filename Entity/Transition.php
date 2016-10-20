@@ -14,7 +14,7 @@ namespace Phlexible\Bundle\TaskBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Task transition
+ * Task transition.
  *
  * @author Stephan Wentz <sw@brainbits.net>
  *
@@ -149,7 +149,7 @@ class Transition
     }
 
     /**
-     * Return status create date
+     * Return status create date.
      *
      * @return \DateTime
      */
@@ -171,7 +171,7 @@ class Transition
     }
 
     /**
-     * Return status create uid
+     * Return status create uid.
      *
      * @return string
      */

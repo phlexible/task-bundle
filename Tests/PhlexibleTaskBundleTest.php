@@ -17,7 +17,7 @@ use Prophecy\Argument;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 
 /**
- * Task bundle test
+ * Task bundle test.
  *
  * @author Stephan Wentz <sw@brainbits.net>
  */
@@ -31,6 +31,5 @@ class PhlexibleTaskBundleTest extends \PHPUnit_Framework_TestCase
 
         $bundle = new PhlexibleTaskBundle();
         $bundle->build($container->reveal());
-
     }
 }

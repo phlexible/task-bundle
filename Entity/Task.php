@@ -16,7 +16,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Finite\StatefulInterface;
 
 /**
- * Task
+ * Task.
  *
  * @author Stephan Wentz <sw@brainbits.net>
  *
@@ -25,11 +25,11 @@ use Finite\StatefulInterface;
  */
 class Task implements StatefulInterface
 {
-    const STATUS_OPEN     = 'open';
+    const STATUS_OPEN = 'open';
     const STATUS_REJECTED = 'rejected';
     const STATUS_FINISHED = 'finished';
     const STATUS_REOPENED = 'reopened';
-    const STATUS_CLOSED   = 'closed';
+    const STATUS_CLOSED = 'closed';
 
     /**
      * @var string
@@ -109,7 +109,7 @@ class Task implements StatefulInterface
     }
 
     /**
-     * Return task ID
+     * Return task ID.
      *
      * @return string
      */
@@ -233,7 +233,7 @@ class Task implements StatefulInterface
     }
 
     /**
-     * Return current status
+     * Return current status.
      *
      * @return string
      */
@@ -255,7 +255,7 @@ class Task implements StatefulInterface
     }
 
     /**
-     * Return all transitions
+     * Return all transitions.
      *
      * @return Transition[]
      */
@@ -295,7 +295,7 @@ class Task implements StatefulInterface
     }
 
     /**
-     * Return all comments
+     * Return all comments.
      *
      * @return Comment[]
      */

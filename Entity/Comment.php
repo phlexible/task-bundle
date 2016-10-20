@@ -14,7 +14,7 @@ namespace Phlexible\Bundle\TaskBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Task comment
+ * Task comment.
  *
  * @author Stephan Wentz <sw@brainbits.net>
  *
@@ -123,7 +123,7 @@ class Comment
     }
 
     /**
-     * Return status create date
+     * Return status create date.
      *
      * @return \DateTime
      */
@@ -145,7 +145,7 @@ class Comment
     }
 
     /**
-     * Return status create uid
+     * Return status create uid.
      *
      * @return string
      */

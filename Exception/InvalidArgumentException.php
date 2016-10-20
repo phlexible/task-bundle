@@ -12,7 +12,7 @@
 namespace Phlexible\Bundle\TaskBundle\Exception;
 
 /**
- * Invalid argument exception for task bundle
+ * Invalid argument exception for task bundle.
  *
  * @author Stephan Wentz <sw@brainbits.net>
  */

@@ -17,7 +17,7 @@ use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 
 /**
- * Task extension
+ * Task extension.
  *
  * @author Stephan Wentz <sw@brainbits.net>
  */

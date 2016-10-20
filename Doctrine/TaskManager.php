@@ -27,7 +27,7 @@ use Phlexible\Bundle\UserBundle\Model\UserManagerInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
- * Task manager
+ * Task manager.
  *
  * @author Stephan Wentz <sw@brainbits.net>
  */
@@ -341,11 +341,11 @@ class TaskManager implements TaskManagerInterface
         $this->entityManager->persist($task);
         $this->entityManager->flush();
 
-        $body = 'New task created by ' . $createUser->getDisplayName() .
-            ', assigned to ' . $assignedUser->getDisplayName() . PHP_EOL .
-            'Description: ' . PHP_EOL . $description . PHP_EOL;
+        $body = 'New task created by '.$createUser->getDisplayName().
+            ', assigned to '.$assignedUser->getDisplayName().PHP_EOL.
+            'Description: '.PHP_EOL.$description.PHP_EOL;
 
-        $message = TasksMessage::create("New task", $body);
+        $message = TasksMessage::create('New task', $body);
         $this->messageService->post($message);
 
         if ($createUser !== $assignedUser) {
@@ -403,18 +403,18 @@ class TaskManager implements TaskManagerInterface
             $changes['comment'] = $taskComment;
         }
 
-        $body = 'Task updated:' . PHP_EOL;
+        $body = 'Task updated:'.PHP_EOL;
         if (isset($changes['transition'])) {
-            $body .= "Status changed from {$changes['transition']->getOldState()} to {$changes['transition']->getNewState()}" . PHP_EOL;
+            $body .= "Status changed from {$changes['transition']->getOldState()} to {$changes['transition']->getNewState()}".PHP_EOL;
         }
         if (isset($changes['assign'])) {
-            $body .= "Assigned to {$changes['assign']->getDisplayName()}" . PHP_EOL;
+            $body .= "Assigned to {$changes['assign']->getDisplayName()}".PHP_EOL;
         }
         if (isset($changes['comment'])) {
-            $body .= 'Comment:' . PHP_EOL . $changes['comment']->getComment() . PHP_EOL;
+            $body .= 'Comment:'.PHP_EOL.$changes['comment']->getComment().PHP_EOL;
         }
 
-        $message = TasksMessage::create("Task updated", $body);
+        $message = TasksMessage::create('Task updated', $body);
         $this->messageService->post($message);
 
         $involvedUsers = [];

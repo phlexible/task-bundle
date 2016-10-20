@@ -19,7 +19,7 @@ use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInt
 use Symfony\Component\Translation\TranslatorInterface;
 
 /**
- * My tasks portlet
+ * My tasks portlet.
  *
  * @author Stephan Wentz <sw@brainbits.net>
  */
@@ -82,7 +82,7 @@ class MyTasksPortlet extends Portlet
     }
 
     /**
-     * Return Portlet data
+     * Return Portlet data.
      *
      * @return array
      */
@@ -100,17 +100,17 @@ class MyTasksPortlet extends Portlet
         $data = [];
 
         foreach ($tasks as $task) {
-            $createUser   = $this->userManager->find($task->getCreateUserId());
-            $type         = $this->types->get($task->getType());
+            $createUser = $this->userManager->find($task->getCreateUserId());
+            $type = $this->types->get($task->getType());
 
             $data[] = [
-                'id'          => $task->getId(),
-                'text'        => $type->getText($task),
-                'type'        => $task->getType(),
-                'status'      => $task->getFiniteState(),
-                'comment'     => '',//$latestStatus->getComment(), TODO: fix
+                'id' => $task->getId(),
+                'text' => $type->getText($task),
+                'type' => $task->getType(),
+                'status' => $task->getFiniteState(),
+                'comment' => '', //$latestStatus->getComment(), TODO: fix
                 'create_user' => $createUser->getDisplayName(),
-                'create_uid'  => $task->getCreateUserId(),
+                'create_uid' => $task->getCreateUserId(),
                 'create_date' => $task->getCreatedAt()->format('Y-m-d H:i:s'),
             ];
         }

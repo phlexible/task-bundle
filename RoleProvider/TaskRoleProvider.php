@@ -14,7 +14,7 @@ namespace Phlexible\Bundle\TaskBundle\RoleProvider;
 use Phlexible\Bundle\GuiBundle\Security\RoleProvider\RoleProvider;
 
 /**
- * Task role provider
+ * Task role provider.
  *
  * @author Stephan Wentz <sw@brainbits.net>
  */

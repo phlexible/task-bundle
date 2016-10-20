@@ -16,7 +16,7 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Reference;
 
 /**
- * Add task types pass
+ * Add task types pass.
  *
  * @author Stephan Wentz <sw@brainbits.net>
  */

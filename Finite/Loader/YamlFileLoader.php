@@ -22,7 +22,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Yaml\Yaml;
 
 /**
- * Loads a StateMachine from a yaml file
+ * Loads a StateMachine from a yaml file.
  *
  * @author Stephan Wentz <sw@brainbits.net>
  */
@@ -50,8 +50,8 @@ class YamlFileLoader implements LoaderInterface
         $config = $yaml->parse(file_get_contents($yamlFile));
         $this->config = array_merge(
             [
-                'class'       => '',
-                'states'      => [],
+                'class' => '',
+                'states' => [],
                 'transitions' => [],
             ],
             $config
@@ -59,7 +59,7 @@ class YamlFileLoader implements LoaderInterface
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function load(StateMachineInterface $stateMachine)
     {
@@ -72,7 +72,7 @@ class YamlFileLoader implements LoaderInterface
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function supports($object, $graph = 'default')
     {
@@ -86,15 +86,15 @@ class YamlFileLoader implements LoaderInterface
      */
     private function loadStates(StateMachineInterface $stateMachine)
     {
-        $resolver = new OptionsResolver;
+        $resolver = new OptionsResolver();
         $resolver->setDefaults(['type' => StateInterface::TYPE_NORMAL, 'properties' => []]);
         $resolver->setAllowedValues(
             [
                 'type' => [
                     StateInterface::TYPE_INITIAL,
                     StateInterface::TYPE_NORMAL,
-                    StateInterface::TYPE_FINAL
-                ]
+                    StateInterface::TYPE_FINAL,
+                ],
             ]
         );
 
@@ -109,7 +109,7 @@ class YamlFileLoader implements LoaderInterface
      */
     private function loadTransitions(StateMachineInterface $stateMachine)
     {
-        $resolver = new OptionsResolver;
+        $resolver = new OptionsResolver();
         $resolver->setRequired(['from', 'to']);
         $resolver->setOptional(['guard']);
         $resolver->setNormalizers(
@@ -119,7 +119,7 @@ class YamlFileLoader implements LoaderInterface
                 },
                 'guard' => function (Options $options, $v) {
                     return !isset($v) ? null : $v;
-                }
+                },
             ]
         );
 

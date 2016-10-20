@@ -18,7 +18,7 @@ use Phlexible\Bundle\UserBundle\Model\UserManagerInterface;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 
 /**
- * Load data listener
+ * Load data listener.
  *
  * @author Stephan Wentz <sw@brainbits.net>
  */
@@ -48,8 +48,7 @@ class LoadDataListener
         TaskManagerInterface $taskManager,
         UserManagerInterface $userManager,
         TokenStorageInterface $tokenStorage
-    )
-    {
+    ) {
         $this->taskManager = $taskManager;
         $this->userManager = $userManager;
         $this->tokenStorage = $tokenStorage;
@@ -72,7 +71,7 @@ class LoadDataListener
                 Task::STATUS_OPEN,
                 Task::STATUS_REJECTED,
                 Task::STATUS_REOPENED,
-                Task::STATUS_FINISHED
+                Task::STATUS_FINISHED,
             ]
         );
 
@@ -85,7 +84,7 @@ class LoadDataListener
                     Task::STATUS_OPEN,
                     Task::STATUS_REJECTED,
                     Task::STATUS_REOPENED,
-                    Task::STATUS_FINISHED
+                    Task::STATUS_FINISHED,
                 ]
             );
         }
@@ -108,15 +107,15 @@ class LoadDataListener
         }
 
         $taskInfo = [
-            'id'        => $task->getId(),
-            'status'    => $task->getFiniteState(),
-            'type'      => $type,
-            'generic'   => 0,// $task->isGeneric() ? 1 : 0, @TODO
-            'text'      => 'test', //$task->getTitle(),
-            'creator'   => $this->userManager->find($createUserId)->getDisplayName(),
+            'id' => $task->getId(),
+            'status' => $task->getFiniteState(),
+            'type' => $type,
+            'generic' => 0, // $task->isGeneric() ? 1 : 0, @TODO
+            'text' => 'test', //$task->getTitle(),
+            'creator' => $this->userManager->find($createUserId)->getDisplayName(),
             'recipient' => $this->userManager->find($assignedUserId)->getDisplayName(),
-            'date'      => $task->getCreatedAt()->format('Y-m-d'),
-            'time'      => $task->getCreatedAt()->format('H:i:s'),
+            'date' => $task->getCreatedAt()->format('Y-m-d'),
+            'time' => $task->getCreatedAt()->format('H:i:s'),
         ];
 
         $event->getData()->task = $taskInfo;
