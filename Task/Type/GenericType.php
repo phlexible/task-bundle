@@ -28,14 +28,6 @@ class GenericType implements TypeInterface
     /**
      * {@inheritdoc}
      */
-    public function getComponent()
-    {
-        return null;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
     public function getRole()
     {
         return null;
@@ -44,31 +36,31 @@ class GenericType implements TypeInterface
     /**
      * {@inheritdoc}
      */
-    public function getTitle(Task $task)
+    public function createPayload($payload)
     {
-        $title = 'Allgemeine Aufgabe';//$this->translator->trans('tasks.general_title');
-
-        return $title;
+        return $payload;
     }
 
     /**
      * {@inheritdoc}
      */
-    public function getText(Task $task)
+    public function createSummary($summary)
     {
-        $text = 'Allgemeine Aufgabe "{title}".'; //$this->translator->trans('tasks.general_template');
-
-        $replace = ['{title}' => $this->getTitle($task)];
-
-        $text = str_replace(array_keys($replace), array_values($replace), $text);
-
-        return $text;
+        return $summary;
     }
 
     /**
      * {@inheritdoc}
      */
-    public function getLink(Task $task)
+    public function createDescription($description)
+    {
+        return $description;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function createLink(Task $task)
     {
         $mailLink = '?e=tasks&p[id]=' . $task->getId();
 
@@ -78,7 +70,7 @@ class GenericType implements TypeInterface
     /**
      * {@inheritdoc}
      */
-    public function getMenuHandle(Task $task)
+    public function createMenuHandle(Task $task)
     {
         $menuHandle = [
             'xtype' => 'tasks'

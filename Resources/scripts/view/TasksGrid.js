@@ -1,6 +1,7 @@
 Ext.provide('Phlexible.tasks.TasksGrid');
 
 Ext.require('Phlexible.tasks.model.Task');
+Ext.require('Phlexible.tasks.NewTaskWindow');
 
 Phlexible.tasks.TasksGrid = Ext.extend(Ext.grid.GridPanel, {
     strings: Phlexible.tasks.Strings,
@@ -103,10 +104,18 @@ Phlexible.tasks.TasksGrid = Ext.extend(Ext.grid.GridPanel, {
         });
 
         this.tbar = [{
-            text: this.strings.reload,
-            iconCls: 'p-task-reset-icon',
+            text: this.strings.create,
+            iconCls: 'p-task-create-icon',
             handler: function () {
-                this.store.reload();
+                var w = new Phlexible.tasks.NewTaskWindow({
+                    listeners: {
+                        create: function() {
+                            this.getStore().reload();
+                        },
+                        scope: this
+                    }
+                });
+                w.show();
             },
             scope: this
         }];

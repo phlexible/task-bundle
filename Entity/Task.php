@@ -26,7 +26,6 @@ class Task implements StatefulInterface
     const STATUS_REJECTED = 'rejected';
     const STATUS_FINISHED = 'finished';
     const STATUS_REOPENED = 'reopened';
-    const STATUS_CLOSED   = 'closed';
 
     /**
      * @var string
@@ -43,7 +42,7 @@ class Task implements StatefulInterface
     private $createUserId;
 
     /**
-     * @var string
+     * @var \DateTime
      * @ORM\Column(name="created_at", type="datetime")
      */
     private $createdAt;
@@ -58,10 +57,16 @@ class Task implements StatefulInterface
      * @var string
      * @ORM\Column(type="string")
      */
-    private $description;
+    private $summary;
 
     /**
      * @var string
+     * @ORM\Column(type="string")
+     */
+    private $description;
+
+    /**
+     * @var array
      * @ORM\Column(type="json_array")
      */
     private $payload;
@@ -327,6 +332,26 @@ class Task implements StatefulInterface
             $this->comments->removeElement($comment);
             $comment->setTask(null);
         }
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getSummary()
+    {
+        return $this->summary;
+    }
+
+    /**
+     * @param string $summary
+     *
+     * @return $this
+     */
+    public function setSummary($summary)
+    {
+        $this->summary = $summary;
 
         return $this;
     }
