@@ -26,7 +26,7 @@ Phlexible.tasks.NewTaskWindow = Ext.extend(Ext.Window, {
                     {
                         xtype: 'combo',
                         fieldLabel: this.strings.task,
-                        hiddenName: 'task',
+                        hiddenName: 'type',
                         anchor: '100%',
                         allowBlank: false,
                         emptyText: this.strings.please_choose,
@@ -35,12 +35,12 @@ Phlexible.tasks.NewTaskWindow = Ext.extend(Ext.Window, {
                             baseParams: {
                                 component: this.component_filter
                             },
-                            fields: ['id', 'task'],
+                            fields: ['id', 'name'],
                             id: 'id',
-                            root: 'tasks'
+                            root: 'types'
                         }),
                         editable: false,
-                        displayField: 'task',
+                        displayField: 'name',
                         valueField: 'id',
                         mode: 'remote',
                         triggerAction: 'all',
@@ -87,8 +87,8 @@ Phlexible.tasks.NewTaskWindow = Ext.extend(Ext.Window, {
                         anchor: '100%',
                         height: 140,
                         allowBlank: false,
-                        fieldLabel: this.strings.comment,
-                        name: 'comment'
+                        fieldLabel: this.strings.description,
+                        name: 'description'
                     }
                 ],
                 bindHandler: function () {

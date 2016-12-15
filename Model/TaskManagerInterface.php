@@ -130,17 +130,23 @@ interface TaskManagerInterface
     public function getTransitions(Task $task);
 
     /**
-     * Create task.
+     * @return array
+     */
+    public function getStates();
+
+    /**
+     * Create task
      *
      * @param TypeInterface $type
      * @param UserInterface $createUser
      * @param UserInterface $assignedUser
      * @param array         $payload
+     * @param string        $summary
      * @param string        $description
      *
      * @return Task
      */
-    public function createTask(TypeInterface $type, UserInterface $createUser, UserInterface $assignedUser, array $payload, $description);
+    public function createTask(TypeInterface $type, UserInterface $createUser, UserInterface $assignedUser, array $payload, $summary, $description);
 
     /**
      * @param Task               $task

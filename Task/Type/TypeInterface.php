@@ -28,38 +28,33 @@ interface TypeInterface
     /**
      * @return string
      */
-    public function getComponent();
-
-    /**
-     * @return string
-     */
     public function getRole();
 
     /**
-     * @param Task $task
+     * @param string $summary
      *
      * @return string
      */
-    public function getTitle(Task $task);
+    public function createSummary($summary);
+
+    /**
+     * @param string $description
+     *
+     * @return string
+     */
+    public function createDescription($description);
 
     /**
      * @param Task $task
      *
      * @return string
      */
-    public function getText(Task $task);
-
-    /**
-     * @param Task $task
-     *
-     * @return string
-     */
-    public function getLink(Task $task);
+    public function createLink(Task $task);
 
     /**
      * @param Task $task
      *
      * @return array
      */
-    public function getMenuHandle(Task $task);
+    public function createMenuHandle(Task $task);
 }

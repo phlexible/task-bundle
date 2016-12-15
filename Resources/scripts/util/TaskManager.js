@@ -11,10 +11,9 @@ Phlexible.tasks.util.TaskManager = {
             callback: function(options, success, response) {
                 if (callback) {
                     var result = Ext.decode(response.responseText);
-                    callback(success, result, options);
+                    callback.call(scope || this, success, result, options);
                 }
-            },
-            scope: scope || this
+            }
         });
     },
 
@@ -23,16 +22,14 @@ Phlexible.tasks.util.TaskManager = {
             url: Phlexible.Router.generate('tasks_assign'),
             params: {
                 id: task_id,
-                recipient: Phlexible.Config.get('user.id'),
-                comment: encodeURIComponent(comment)
+                recipient: Phlexible.Config.get('user.id')
             },
             callback: function(options, success, response) {
                 if (callback) {
                     var result = Ext.decode(response.responseText);
-                    callback(success, result, options);
+                    callback.call(scope || this, success, result, options);
                 }
-            },
-            scope: scope || this
+            }
         });
     },
 
@@ -47,19 +44,36 @@ Phlexible.tasks.util.TaskManager = {
             callback: function(options, success, response) {
                 if (callback) {
                     var result = Ext.decode(response.responseText);
-                    callback(success, result, options);
+                    callback.call(scope || this, success, result, options);
                 }
-            },
-            scope: scope || this
+            }
         });
     },
 
-    setStatus: function (task_id, new_status, comment, callback, scope) {
+    setStatus: function (task_id, name, comment, callback, scope) {
         Ext.Ajax.request({
             url: Phlexible.Router.generate('tasks_create_transition'),
             params: {
                 id: task_id,
-                new_status: new_status,
+                name: name,
+                comment: encodeURIComponent(comment)
+            },
+            callback: function(options, success, response) {
+                if (callback) {
+                    var result = Ext.decode(response.responseText);
+                    callback.call(scope || this, success, result, options);
+                }
+            }
+        });
+    },
+
+    transition: function (task_id, name, recipient, comment, callback, scope) {
+        Ext.Ajax.request({
+            url: Phlexible.Router.generate('tasks_create_transition'),
+            params: {
+                id: task_id,
+                name: name,
+                recipient: recipient,
                 comment: encodeURIComponent(comment)
             },
             callback: function(options, success, response) {

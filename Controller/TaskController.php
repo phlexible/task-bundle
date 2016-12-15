@@ -67,26 +67,17 @@ class TaskController extends Controller
         $start = $request->request->get('start', 0);
 
         $status = [];
-        if ($request->request->get('status_open')) {
-            $status[] = Task::STATUS_OPEN;
-        }
-        if ($request->request->get('status_rejected')) {
-            $status[] = Task::STATUS_REJECTED;
-        }
-        if ($request->request->get('status_reopened')) {
-            $status[] = Task::STATUS_REOPENED;
-        }
-        if ($request->request->get('status_finished')) {
-            $status[] = Task::STATUS_FINISHED;
-        }
-        if ($request->request->get('status_closed')) {
-            $status[] = Task::STATUS_CLOSED;
-        }
-        if (!count($status)) {
-            $status[] = Task::STATUS_OPEN;
+        foreach ($request->request->all() as $key => $value) {
+            if (substr($key, 0, 7) === 'status_') {
+                $status[] = substr($key, 7);
+            }
         }
 
         $taskManager = $this->get('phlexible_task.task_manager');
+
+        if (!count($status)) {
+            $status[] = current(array_keys($taskManager->getStates()));
+        }
 
         $userId = $this->getUser()->getId();
 
@@ -132,66 +123,9 @@ class TaskController extends Controller
      */
     private function serializeTask(Task $task)
     {
-        $taskManager = $this->get('phlexible_task.task_manager');
-        $userManager = $this->get('phlexible_user.user_manager');
-        $types = $this->get('phlexible_task.types');
+        $serializer = $this->get('phlexible_task.task_serializer');
 
-        $assignedUser = $userManager->find($task->getAssignedUserId());
-        $createUser = $userManager->find($task->getCreateUserId());
-
-        $type = $types->get($task->getType());
-
-        $transitions = [];
-        foreach ($task->getTransitions() as $transition) {
-            $transitionUser = $userManager->find($transition->getCreateUserId());
-            $createdAt = $transition->getCreatedAt()->format('Y-m-d H:i:s');
-            $transitions[$createdAt.'_'.$transition->getId()] = [
-                'id' => $transition->getId(),
-                'name' => $transition->getName(),
-                'new_state' => $transition->getNewState(),
-                'old_state' => $transition->getOldState(),
-                'created_at' => $createdAt,
-                'create_user' => $transitionUser->getDisplayName(),
-            ];
-        }
-        ksort($transitions);
-        $transitions = array_values($transitions);
-
-        $comments = [];
-        foreach ($task->getComments() as $comment) {
-            $commentUser = $userManager->find($comment->getCreateUserId());
-            $createdAt = $comment->getCreatedAt()->format('Y-m-d H:i:s');
-            $comments[$createdAt.'_'.$comment->getId()] = [
-                'id' => $comment->getId(),
-                'current_state' => $comment->getCurrentState(),
-                'comment' => $comment->getComment(),
-                'created_at' => $createdAt,
-                'create_user' => $commentUser->getDisplayName(),
-            ];
-        }
-        ksort($comments);
-        $comments = array_values($comments);
-
-        $taskData = [
-            'id' => $task->getId(),
-            'type' => $task->getType(),
-            'generic' => $task->getType() === 'generic',
-            'title' => $type->getTitle($task),
-            'text' => $type->getText($task),
-            'description' => $task->getDescription(),
-            'component' => $type->getComponent(),
-            'link' => $type->getLink($task),
-            'assigned_user' => $assignedUser->getDisplayName(),
-            'status' => $task->getFiniteState(),
-            'create_user' => $createUser->getDisplayName(),
-            'create_uid' => $task->getCreateUserId(),
-            'created_at' => $task->getCreatedAt()->format('Y-m-d H:i:s'),
-            'transitions' => $transitions,
-            'comments' => $comments,
-            'states' => $taskManager->getTransitions($task),
-        ];
-
-        return $taskData;
+        return $serializer->serialize($task);
     }
 
     /**
@@ -232,7 +166,28 @@ class TaskController extends Controller
     }
 
     /**
-     * List recipients.
+     * List types
+     *
+     * @param Request $request
+     *
+     * @return JsonResponse
+     * @Route("/states", name="tasks_states")
+     * @Method({"GET", "POST"})
+     * @ApiDoc(
+     *   description="List task states"
+     * )
+     */
+    public function statusAction(Request $request)
+    {
+        $taskManager = $this->get('phlexible_task.task_manager');
+
+        $states = $taskManager->getStates();
+
+        return new JsonResponse(['states' => $states]);
+    }
+
+    /**
+     * List recipients
      *
      * @param Request $request
      *

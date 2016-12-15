@@ -323,20 +323,38 @@ class TaskManager implements TaskManagerInterface
     /**
      * {@inheritdoc}
      */
-    public function createTask(TypeInterface $type, UserInterface $createUser, UserInterface $assignedUser, array $payload, $description)
+    public function getStates()
+    {
+        $states = array();
+
+        foreach ($this->stateMachine->getStates() as $state) {
+            $states[] = array(
+                'name' => $state,
+                'properties' => $this->stateMachine->getState($state)->getProperties(),
+            );
+        }
+        return $states;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function createTask(TypeInterface $type, UserInterface $createUser, UserInterface $assignedUser, array $payload, $summary, $description)
     {
         $task = new Task();
         $task
             ->setCreateUserId($createUser->getId())
             ->setCreatedAt(new \DateTime())
-            ->setDescription($description)
-            ->setFiniteState(Task::STATUS_OPEN)
-            ->setPayload($payload)
+            ->setSummary($type->createSummary($summary))
+            ->setDescription($type->createDescription($description))
+            ->setPayload($type->createPayload($payload))
             ->setAssignedUserId($assignedUser->getId())
             ->setType($type->getName());
 
         $this->stateMachine->setObject($task);
         $this->stateMachine->initialize();
+
+        $task->setFiniteState($this->stateMachine->getCurrentState());
 
         $this->entityManager->persist($task);
         $this->entityManager->flush();
@@ -402,6 +420,8 @@ class TaskManager implements TaskManagerInterface
 
             $changes['comment'] = $taskComment;
         }
+
+        $this->entityManager->flush();
 
         $body = 'Task updated:'.PHP_EOL;
         if (isset($changes['transition'])) {

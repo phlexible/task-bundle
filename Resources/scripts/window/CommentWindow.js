@@ -81,11 +81,15 @@ Phlexible.tasks.CommentWindow = Ext.extend(Ext.Window, {
 
         Phlexible.tasks.util.TaskManager.comment(this.task.id, values.comment, function(success, result) {
             if (success && result.success) {
-                self.task.data.status = result.data.task.status;
-                self.task.data.states = result.data.task.states;
-                self.task.data.comments = result.data.task.comments;
-                self.task.data.transitions = result.data.task.transitions;
-                self.task.data.assigned_user = result.data.task.assigned_user;
+                self.task.beginEdit();
+                self.task.set('status', result.data.task.status);
+                self.task.set('states', result.data.task.states);
+                self.task.set('comments', result.data.task.comments);
+                self.task.set('transitions', result.data.task.transitions);
+                self.task.set('assigned_user', result.data.task.assigned_user);
+                self.task.set('assigned_user_id', result.data.task.assigned_user_id);
+                self.task.endEdit();
+                self.task.commit();
 
                 self.fireEvent('comment', self.task);
                 self.close();

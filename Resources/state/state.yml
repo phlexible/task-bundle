@@ -2,33 +2,42 @@ class: ~
 states:
     open:
         type: initial
-        properties: []
+        properties:
+            defaultVisible: true
+            icon: p-task-status_open-icon
     rejected:
         type: normal
-        properties: []
+        properties:
+            defaultVisible: true
+            icon: p-task-status_rejected-icon
     reopened:
         type: normal
-        properties: []
+        properties:
+            defaultVisible: true
+            icon: p-task-status_reopened-icon
     finished:
         type: normal
-        properties: []
-    closed:
+        properties:
+            defaultVisible: true
+            icon: p-task-status_finished-icon
+    archived:
         type: final
-        properties: []
+        properties:
+            icon: p-task-status_archived-icon
 transitions:
     reject:
         from: [open, reopened]
         to: rejected
         guard: ~
     reopen:
-        from: [rejected, finished]
+        from: [rejected, finished, archived]
         to: reopened
         guard: ~
     finish:
         from: [open, reopened]
         to: finished
         guard: ~
-    close:
+    archive:
         from: [open, rejected, reopened, finished]
-        to: closed
+        to: archived
         guard: ~

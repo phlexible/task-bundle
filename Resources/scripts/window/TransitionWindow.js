@@ -1,9 +1,9 @@
-Ext.provide('Phlexible.tasks.AssignWindow');
+Ext.provide('Phlexible.tasks.TransitionWindow');
 
 Ext.require('Phlexible.tasks.util.TaskManager');
 
-Phlexible.tasks.AssignWindow = Ext.extend(Ext.Window, {
-    title: Phlexible.tasks.Strings.assign,
+Phlexible.tasks.TransitionWindow = Ext.extend(Ext.Window, {
+    title: Phlexible.tasks.Strings.transition,
     strings: Phlexible.tasks.Strings,
     width: 400,
     minWidth: 400,
@@ -91,17 +91,17 @@ Phlexible.tasks.AssignWindow = Ext.extend(Ext.Window, {
                 scope: this
             },
             {
-                text: this.strings.assign,
-                handler: this.assign,
+                text: this.strings.transition,
+                handler: this.transition,
                 formBind: true,
                 scope: this
             }
         ];
 
-        Phlexible.tasks.AssignWindow.superclass.initComponent.call(this);
+        Phlexible.tasks.TransitionWindow.superclass.initComponent.call(this);
     },
 
-    assign: function () {
+    transition: function () {
         if (!this.getComponent(0).form.isValid()) {
             return;
         }
@@ -109,7 +109,7 @@ Phlexible.tasks.AssignWindow = Ext.extend(Ext.Window, {
         var values = this.getComponent(0).getForm().getValues(),
             self = this;
 
-        Phlexible.tasks.util.TaskManager.assign(this.task.id, values.recipient, values.comment, function(success, result) {
+        Phlexible.tasks.util.TaskManager.transition(this.task.id, this.newStatus, values.recipient, values.comment, function(success, result) {
             if (success && result.success) {
                 self.task.beginEdit();
                 self.task.set('status', result.data.task.status);
@@ -121,7 +121,7 @@ Phlexible.tasks.AssignWindow = Ext.extend(Ext.Window, {
                 self.task.endEdit();
                 self.task.commit();
 
-                self.fireEvent('assign', self.task);
+                self.fireEvent('transition', self.task);
                 self.close();
             }
         });
