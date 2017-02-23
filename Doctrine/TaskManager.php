@@ -333,6 +333,7 @@ class TaskManager implements TaskManagerInterface
                 'properties' => $this->stateMachine->getState($state)->getProperties(),
             );
         }
+
         return $states;
     }
 

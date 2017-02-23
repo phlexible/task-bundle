@@ -13,6 +13,7 @@ namespace Phlexible\Bundle\TaskBundle\Tests;
 
 use Phlexible\Bundle\TaskBundle\DependencyInjection\Compiler\AddTaskTypesPass;
 use Phlexible\Bundle\TaskBundle\PhlexibleTaskBundle;
+use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 
@@ -21,7 +22,7 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
  *
  * @author Stephan Wentz <sw@brainbits.net>
  */
-class PhlexibleTaskBundleTest extends \PHPUnit_Framework_TestCase
+class PhlexibleTaskBundleTest extends TestCase
 {
     public function testBundleAddsCompilerPass()
     {

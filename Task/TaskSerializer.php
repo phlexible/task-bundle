@@ -1,9 +1,12 @@
 <?php
-/**
- * phlexible
+
+/*
+ * This file is part of the phlexible task package.
  *
- * @copyright 2007-2013 brainbits GmbH (http://www.brainbits.net)
- * @license   proprietary
+ * (c) Stephan Wentz <sw@brainbits.net>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
  */
 
 namespace Phlexible\Bundle\TaskBundle\Task;
@@ -69,11 +72,11 @@ class TaskSerializer
             $transitionUser = $this->userManager->find($transition->getCreateUserId());
             $createdAt = $transition->getCreatedAt()->format('Y-m-d H:i:s');
             $transitions[$createdAt.'_'.$transition->getId()] = [
-                'id'          => $transition->getId(),
-                'name'        => $transition->getName(),
-                'new_state'   => $transition->getNewState(),
-                'old_state'   => $transition->getOldState(),
-                'created_at'  => $createdAt,
+                'id' => $transition->getId(),
+                'name' => $transition->getName(),
+                'new_state' => $transition->getNewState(),
+                'old_state' => $transition->getOldState(),
+                'created_at' => $createdAt,
                 'create_user' => $transitionUser->getDisplayName(),
             ];
         }
@@ -85,34 +88,34 @@ class TaskSerializer
             $commentUser = $this->userManager->find($comment->getCreateUserId());
             $createdAt = $comment->getCreatedAt()->format('Y-m-d H:i:s');
             $comments[$createdAt.'_'.$comment->getId()] = [
-                'id'            => $comment->getId(),
+                'id' => $comment->getId(),
                 'current_state' => $comment->getCurrentState(),
-                'comment'       => $comment->getComment(),
-                'created_at'    => $createdAt,
-                'create_user'   => $commentUser->getDisplayName(),
+                'comment' => $comment->getComment(),
+                'created_at' => $createdAt,
+                'create_user' => $commentUser->getDisplayName(),
             ];
         }
         ksort($comments);
         $comments = array_values($comments);
 
         $taskData = [
-            'id'               => $task->getId(),
-            'type'             => $task->getType(),
-            'generic'          => $task->getType() === 'generic',
-            'name'             => $type->getName(),
-            'summary'          => $task->getSummary(),
-            'description'      => $task->getDescription(),
-            'component'        => $type->getComponent(),
-            'link'             => $type->getLink($task),
+            'id' => $task->getId(),
+            'type' => $task->getType(),
+            'generic' => $task->getType() === 'generic',
+            'name' => $type->getName(),
+            'summary' => $task->getSummary(),
+            'description' => $task->getDescription(),
+            'component' => $type->getComponent(),
+            'link' => $type->getLink($task),
             'assigned_user_id' => $task->getAssignedUserId(),
-            'assigned_user'    => $assignedUser->getDisplayName(),
-            'status'           => $task->getFiniteState(),
-            'create_user'      => $createUser->getDisplayName(),
-            'create_user_id'   => $task->getCreateUserId(),
-            'created_at'       => $task->getCreatedAt()->format('Y-m-d H:i:s'),
-            'transitions'      => $transitions,
-            'comments'         => $comments,
-            'states'           => $this->taskManager->getTransitions($task),
+            'assigned_user' => $assignedUser->getDisplayName(),
+            'status' => $task->getFiniteState(),
+            'create_user' => $createUser->getDisplayName(),
+            'create_user_id' => $task->getCreateUserId(),
+            'created_at' => $task->getCreatedAt()->format('Y-m-d H:i:s'),
+            'transitions' => $transitions,
+            'comments' => $comments,
+            'states' => $this->taskManager->getTransitions($task),
         ];
 
         return $taskData;

@@ -166,7 +166,7 @@ class TaskController extends Controller
     }
 
     /**
-     * List types
+     * List status.
      *
      * @param Request $request
      *
@@ -187,7 +187,7 @@ class TaskController extends Controller
     }
 
     /**
-     * List recipients
+     * List recipients.
      *
      * @param Request $request
      *
