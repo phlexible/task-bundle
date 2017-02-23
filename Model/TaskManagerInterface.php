@@ -135,8 +135,6 @@ interface TaskManagerInterface
     public function getStates();
 
     /**
-     * Create task
-     *
      * @param TypeInterface $type
      * @param UserInterface $createUser
      * @param UserInterface $assignedUser
