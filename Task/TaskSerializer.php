@@ -17,7 +17,7 @@ use Phlexible\Bundle\TaskBundle\Task\Type\TypeCollection;
 use Phlexible\Bundle\UserBundle\Model\UserManagerInterface;
 
 /**
- * Task serializer
+ * Task serializer.
  *
  * @author Stephan Wentz <sw@brainbits.net>
  */
