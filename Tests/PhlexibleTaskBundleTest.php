@@ -21,6 +21,8 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
  * Task bundle test.
  *
  * @author Stephan Wentz <sw@brainbits.net>
+ *
+ * @covers \Phlexible\Bundle\TaskBundle\PhlexibleTaskBundle
  */
 class PhlexibleTaskBundleTest extends TestCase
 {
